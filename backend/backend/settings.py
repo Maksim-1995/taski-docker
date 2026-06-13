@@ -8,13 +8,12 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-!@#%$^&*()_+')
 
 DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 't')
 
-ALLOWED_HOSTS = [
-    host.strip()
-    for host in os.getenv(
-        "ALLOWED_HOSTS",
-        "localhost,127.0.0.1,backend"
-    ).split(",")
-]
+import os
+
+ALLOWED_HOSTS = os.getenv(
+    "ALLOWED_HOSTS",
+    "localhost,127.0.0.1,backend"
+).split(",")
 
 # Application definition
 
