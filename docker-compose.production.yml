@@ -9,12 +9,14 @@ services:
   db:
     image: postgres:13.10
     env_file: .env
+    restart: always
     volumes:
       - pg_data_production:/var/lib/postgresql/data
 
   backend:
     image: maksim1995/taski_backend:latest
     env_file: .env
+    restart: always
     depends_on:
       - db
     environment:
@@ -27,6 +29,7 @@ services:
   frontend:
     image: maksim1995/taski_frontend
     env_file: .env
+    restart: always
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static_volume:/frontend_static
@@ -34,6 +37,7 @@ services:
   gateway:
     image: maksim1995/taski_gateway
     env_file: .env
+    restart: always
     depends_on:
       - backend
     volumes:
